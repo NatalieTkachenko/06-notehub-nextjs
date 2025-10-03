@@ -1,6 +1,6 @@
 'use client';
 
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useDebouncedCallback } from 'use-debounce';
