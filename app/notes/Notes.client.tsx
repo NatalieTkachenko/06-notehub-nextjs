@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useDebouncedCallback } from 'use-debounce';
@@ -26,7 +26,7 @@ function Notes({ initialSearch, initialPage }: NotesProps) {
   const { data, isLoading } = useQuery<FetchNotesResponse>({
     queryKey: ['noteList', search, page],
     queryFn: () => fetchNotes(search, page),
-    // placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData,
     throwOnError: true,
   });
 
