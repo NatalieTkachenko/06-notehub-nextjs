@@ -25,11 +25,15 @@ interface NewNote {
   content: string;
 }
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export async function fetchNotes(
   search?: string,
   page?: number
 ): Promise<FetchNotesResponse> {
   console.log(`Я отримую нотатки із сторінки ${page}`);
+
+  await delay(1000);
   try {
     const response = await instance.get<FetchNotesResponse>('notes', {
       params: { search, page },
@@ -53,5 +57,11 @@ export async function deleteNote(id: string): Promise<Note> {
   console.log('Я видалю нотатку');
   const response = await instance.delete<Note>(`notes/${id}`);
   console.log(response.data);
+  return response.data;
+}
+
+export async function fetchNoteById(id: string): Promise<Note> {
+  await delay(3000);
+  const response = await instance.get<Note>(`notes/${id}`);
   return response.data;
 }
