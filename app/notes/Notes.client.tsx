@@ -26,7 +26,7 @@ function Notes({ initialSearch, initialPage }: NotesProps) {
   const { data, isLoading } = useQuery<FetchNotesResponse>({
     queryKey: ['noteList', search, page],
     queryFn: () => fetchNotes(search, page),
-    // placeholderData: keepPreviousData,
+
     throwOnError: true,
   });
 
